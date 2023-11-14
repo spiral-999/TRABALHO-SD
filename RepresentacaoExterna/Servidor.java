@@ -26,7 +26,7 @@ public class Servidor {
         candidates.add(new Candidato("Nulo", 0));
         try (ServerSocket serverSocket = new ServerSocket(SERVER_PORT_TCP)) {
             Scanner sc = new Scanner(System.in);
-            System.out.println("Digite a duracao da votacao : ");
+            System.out.println("Digite o tempo da votacao : ");
             int duracao = sc.nextInt();
             long tempoInicial = System.currentTimeMillis();
             System.out.println("Server is running on port " + SERVER_PORT_TCP);
@@ -38,7 +38,7 @@ public class Servidor {
                 if ((tempoAtual - tempoInicial) > duracao) {
                     System.out.println("Os votos estao sendo apurados, confira o cliente");
                     List<Candidato> ganhadores = Ganhadores();
-                    String info = "Nome(s) do(s) ganhador(es): ";
+                    String info = "Eleito : ";
                     byte[] messageBytes = info.getBytes();
                     DatagramPacket packet = new DatagramPacket(messageBytes, messageBytes.length, group, multicastServer.getLocalPort());
                     multicastServer.send(packet);
